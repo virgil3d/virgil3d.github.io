@@ -6,6 +6,9 @@ title: Questions about Virgil project
 
 This page is a bunch of questions I've asked myself.
 
+## What are Red Hat's intentions for this project?
+Well its mostly a personally driven project by me that I've wanted to attempt for a long time. Red Hat have kindly managed to find some time to let me go for it and do as much research on what is needed to create a solution to 3D inside a virtual machine. However at the moment there is no commitment to maintain or support this going forward, if this changes I'll let people know. For now I'm just developing it in between my other work commitments.
+
 ## How do I get this running?
 Currently you'd be willing to spend a lot of time learning the code base and wanting to develop on this before you'd get it running. I'm not providing instructions at the moment, as I don't have time to support people who won't contribute back much. The project doesn't need "testing" at the moment, since I've got an endless list of things to fix, it needs "developing".
 
