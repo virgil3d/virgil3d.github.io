@@ -1,40 +1,31 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>Virgil 3D GPU project by virgil3d</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="javascripts/scale.fix.js"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header class="without-description">
-        <h1>Virgil 3D GPU project</h1>
-        <p></p>
-        <p class="view"><a href="https://github.com/virgil3d">View the Project on GitHub <small>virgil3d</small></a></p>
-        <ul>
-          <li class="single"><a href="">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a name="virgil-3d-project" class="anchor" href="#virgil-3d-project"><span class="octicon octicon-link"></span></a>Virgil 3d project</h1>
+    <section class="page-header">
+      <h1 class="project-name">Virgil 3D GPU project</h1>
+      <h2 class="project-tagline"></h2>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="virgil-3d-project" class="anchor" href="#virgil-3d-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>Virgil 3d project</h1>
 
 <h2>
-<a name="what-is-virgil" class="anchor" href="#what-is-virgil"><span class="octicon octicon-link"></span></a>What is Virgil?</h2>
+<a id="what-is-virgil" class="anchor" href="#what-is-virgil" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Virgil?</h2>
 
 <p>Virgil is a research project to investigate the possibility of creating a virtual 3D GPU for use inside qemu virtual machines, that allows the guest operating system to use the capabilities of the host GPU to accelerate 3D rendering. The plan is to have a guest GPU that is fully independent of the host GPU.</p>
 
 <h2>
-<a name="what-exactly-does-it-entail" class="anchor" href="#what-exactly-does-it-entail"><span class="octicon octicon-link"></span></a>What exactly does it entail?</h2>
+<a id="what-exactly-does-it-entail" class="anchor" href="#what-exactly-does-it-entail" aria-hidden="true"><span class="octicon octicon-link"></span></a>What exactly does it entail?</h2>
 
 <p>The project entails creating a virtual 3D capable graphics card for virtual machines running inside qemu. The design of this card is based around the concepts of Gallium3D to make writing Mesa and (eventually) Direct3D drivers for it easy. The card natively uses the Gallium TGSI intermediate representation for its shaders. The implementation of rendering for the card is done in the host
 system as part of qemu and is implemented purely on OpenGL so you can accelerated rendering on any sufficiently capable card/driver combination.</p>
@@ -42,104 +33,74 @@ system as part of qemu and is implemented purely on OpenGL so you can accelerate
 <p>The project also consists of a complete Linux guest stack, composed of a Linux kernel KMS driver, X.org 2D DDX driver and Mesa 3D driver.</p>
 
 <h2>
-<a name="current-status" class="anchor" href="#current-status"><span class="octicon octicon-link"></span></a>Current status</h2>
+<a id="current-status" class="anchor" href="#current-status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Current status</h2>
 
 <ul>
-<li><p>The project is currently under research and development.</p></li>
-<li><p>It is not ready for distribution.</p></li>
-<li><p>There is no current roadmap or date for when it will be ready for distribution.</p></li>
-<li><p>The project will hopefully be implemented as part of the upstream projects once some sort of API stability can be found and maintained.</p></li>
-<li><p>At this time the project is interested in finding collaborators and developers who are working on similar ideas and would like to discuss how they could get involved and would like input on other use cases that could be accommodated within the scope of this project.</p></li>
-<li><p>The project isn't currently for end users, earlier adopters, or benchmarking article writers.</p></li>
-</ul><h3>
-<a name="so-what-can-it-do-now" class="anchor" href="#so-what-can-it-do-now"><span class="octicon octicon-link"></span></a>So what can it do now?</h3>
-
-<p>Can render some 3D applications, gnome-shell and openarena being the primary ones, passes some piglit tests but a lot left to fix. I'll put up another page with more info on what else needs to happen.</p>
-
-<h2>
-<a name="initial-architecture" class="anchor" href="#initial-architecture"><span class="octicon octicon-link"></span></a>Initial architecture</h2>
-
-<p>The initial architecture is based around using virtio as a transport mechanism to transport resources and state objects based on the Gallium3D API from Mesa. Shaders are currently based on the Gallium3D TGSI representation. The internal guest driver model is the Linux DRM/KMS model.</p>
-
-<p>I've got a work in progress Google document with a lot more technical information in it:
-<a href="https://docs.google.com/document/d/1cL2sEi5DAd-qY_OzyNiUyIbcU2ZvcI8lhv3PWzFoH_w/pub">https://docs.google.com/document/d/1cL2sEi5DAd-qY_OzyNiUyIbcU2ZvcI8lhv3PWzFoH_w/pub</a></p>
+<li><p>Many pieces are now upstreamed in various projects.</p></li>
+<li><p>Kernel
+Linux 4.2 contains the modesetting only drivers.
+Linux 4.4 contains the 3D supported pieces.</p></li>
+<li><p>Mesa
+Mesa master contains the virgl 3D driver.</p></li>
+<li><p>QEMU
+QEMU 2.4 contained the initial virtio-gpu with no acceleration support.
+QEMU 2.5 contains 3D support only with the GTK3 frontend with GL enabled.</p></li>
+<li><p>virglrenderer
+The virglrenderer library seems mostly API stable.</p></li>
+</ul>
 
 <h3>
-<a name="qemu-device" class="anchor" href="#qemu-device"><span class="octicon octicon-link"></span></a>QEMU device</h3>
+<a id="so-what-can-it-do-now" class="anchor" href="#so-what-can-it-do-now" aria-hidden="true"><span class="octicon octicon-link"></span></a>So what can it do now?</h3>
 
-<p>The virgl device is a VGA device inside QEMU that exposes a single virtio ring to the guest. The qemu process has a new thread running that processes the ring and calls the renderer library to process the commands and have the host GL implementation render them. The renderer library is currently provided by the Mesa codebase.</p>
+<p>Run a desktop and most 3D games I've thrown at it.</p>
 
 <h2>
-<a name="scope" class="anchor" href="#scope"><span class="octicon octicon-link"></span></a>Scope</h2>
+<a id="scope" class="anchor" href="#scope" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scope</h2>
 
 <p>The project is currently investigating the desktop virtualisation use case only. This use case is where the viewer, host and guest are all running on the same machine (i.e. workstation or laptop). Some areas are in scope for future investigation but not being looked at, at this time.</p>
 
 <h3>
-<a name="future-scope" class="anchor" href="#future-scope"><span class="octicon octicon-link"></span></a>Future scope</h3>
+<a id="future-scope" class="anchor" href="#future-scope" aria-hidden="true"><span class="octicon octicon-link"></span></a>Future scope</h3>
 
 <ul>
 <li>Remoting rendering using a codec solution.</li>
 <li>Windows guest, Direct3D drivers.</li>
 <li>Other architectures</li>
 <li>Limited environment renderer (GLES2)</li>
-</ul><h3>
-<a name="out-of-scope" class="anchor" href="#out-of-scope"><span class="octicon octicon-link"></span></a>Out of scope</h3>
+</ul>
+
+<h3>
+<a id="out-of-scope" class="anchor" href="#out-of-scope" aria-hidden="true"><span class="octicon octicon-link"></span></a>Out of scope</h3>
 
 <ul>
 <li>Passing through GPUs or subsets of GPU capabilities.</li>
-</ul><h1>
-<a name="repos" class="anchor" href="#repos"><span class="octicon octicon-link"></span></a>Repos</h1>
-
-<p>All repos are currently in Dave's freedesktop git trees. Four upstream projects are involved: qemu, mesa, Linux kernel and X.org DDX driver. The code is all MIT licensed so far, except the qemu bits which are under the GPL. There are no guarantees this code will build or work on any given day at any given time, the project isn't ready for that yet.</p>
-
-<p>QEMU: contains the basic virgl virtio VGA device, and basic GL setup
-<a href="http://cgit.freedesktop.org/%7Eairlied/qemu/log/?h=virgl">http://cgit.freedesktop.org/~airlied/qemu/log/?h=virgl</a></p>
-
-<p>Mesa: the GL renderer and the guest 3D driver
-<a href="http://cgit.freedesktop.org/%7Eairlied/mesa/log/?h=renderer-1">http://cgit.freedesktop.org/~airlied/mesa/log/?h=renderer-1</a></p>
-
-<p>Linux kernel: the guest DRM/KMS driver
-<a href="http://cgit.freedesktop.org/%7Eairlied/linux/log/?h=virgl">http://cgit.freedesktop.org/~airlied/linux/log/?h=virgl</a></p>
-
-<p>X.org DDX driver:
-<a href="http://cgit.freedesktop.org/%7Eairlied/xf86-video-virgl">http://cgit.freedesktop.org/~airlied/xf86-video-virgl</a></p>
+</ul>
 
 <h1>
-<a name="demos" class="anchor" href="#demos"><span class="octicon octicon-link"></span></a>Demos</h1>
+<a id="repos" class="anchor" href="#repos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Repos</h1>
 
-<p>Virgil booting Fedora 19 and running gnome-shell:
-<a href="https://www.youtube.com/watch?v=ZuuF092RDDc">https://www.youtube.com/watch?v=ZuuF092RDDc</a></p>
+<p>All upstream parts are being developed upstream.</p>
 
-<p>Virgil running openarena inside the VM.
-<a href="https://www.youtube.com/watch?v=ONFGnUaln-4">https://www.youtube.com/watch?v=ONFGnUaln-4</a></p>
-
-<h1>
-<a name="questions" class="anchor" href="#questions"><span class="octicon octicon-link"></span></a>Questions</h1>
-
-<p>Here are some Q/A I've thought up so far:
-<a href="http://virgil3d.github.io/questions.html">http://virgil3d.github.io/questions.html</a></p>
+<p>virglrenderer: the GL renderer
+<a href="http://cgit.freedesktop.org/%7Eairlied/virglrenderer">http://cgit.freedesktop.org/~airlied/virglrenderer</a></p>
 
 <h1>
-<a name="building" class="anchor" href="#building"><span class="octicon octicon-link"></span></a>Building</h1>
+<a id="authors-and-contributors" class="anchor" href="#authors-and-contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors and Contributors</h1>
 
-<p>here are some hopeful build instructions:
-<a href="https://docs.google.com/document/d/1CNiN0rHdfh7cp9tQ3coebNEJtHJzm4OCWvF3qL4nucc/pub">https://docs.google.com/document/d/1CNiN0rHdfh7cp9tQ3coebNEJtHJzm4OCWvF3qL4nucc/pub</a></p>
-
-<h1>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h1>
-
-<p>Virgil is a research project undertaken by Dave Airlie at Red Hat. It builds on lots of open source work in a number of projects, primarily the Gallium 3D code from the Mesa project.</p>
+<p>Virgil is a research project undertaken by Dave Airlie at Red Hat. It builds on lots of open source work in a number of projects, primarily the Gallium 3D code from the Mesa project. </p>
 
 <h1>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h1>
+<a id="support-or-contact" class="anchor" href="#support-or-contact" aria-hidden="true"><span class="octicon octicon-link"></span></a>Support or Contact</h1>
 
 <p>No mailing list yet, you can find me on irc generally, and at my normal email addresses.</p>
-      </section>
-    </div>
-    <footer>
-      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
-    </footer>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+
+      <footer class="site-footer">
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
   </body>
 </html>
